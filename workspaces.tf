@@ -10,15 +10,23 @@ locals {
   env = {
     defaults = {
       /* Default settings for all fleets/workspaces. */
+
+      hosts_count = 1 /* number of hosts in each DC */
+
+      do_type = "s-1vcpu-2gb"        /* DigitalOcean */
+      ac_type = "ecs.t5-lc1m2.small" /* Alibaba Cloud */
+      gc_type = "g1-small"           /* Google Cloud */
+
+      data_vol_size = 40
     }
 
+    # Inherits defaults.
     test = {
       /* Settings specific to the test fleet/workspace. */
     }
   }
 }
 
-/* Makes fleet settings available under local.ws. */
 locals {
   ws = merge(local.env["defaults"], local.env[terraform.workspace])
 }
