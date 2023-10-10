@@ -11,3 +11,6 @@ bootstrap__consul_certs_client_key: '{{lookup("bitwarden", "consul/certs",      
 bootstrap__sshguard_whitelist_extra: ['{{lookup("bitwarden", "sshguard/whitelist", field="jakubgs-home")}}']
 # Wireguard
 wireguard_consul_acl_token: '{{lookup("bitwarden", "consul/acl-tokens", field="wireguard")}}'
+
+# TODO: cleanup after certbot role fixed
+certbot_services_to_stop: []
