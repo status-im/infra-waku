@@ -17,7 +17,8 @@ locals {
       ac_type = "ecs.t5-lc1m2.small" /* Alibaba Cloud */
       gc_type = "g1-small"           /* Google Cloud */
 
-      data_vol_size = 40
+      node_data_vol_size = 40
+      node_db_data_vol_size = 40
     }
 
     # Inherits defaults.

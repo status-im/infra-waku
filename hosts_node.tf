@@ -1,8 +1,9 @@
-module "hosts" {
+module "node" {
   source = "github.com/status-im/infra-tf-multi-provider"
 
   /* node type */
-  group  = "waku"
+  name   = "node"
+  group  = "node"
   env    = "waku"
   stage  = terraform.workspace
   domain = var.domain
@@ -16,9 +17,9 @@ module "hosts" {
   gc_type = local.ws["gc_type"] /* Google Cloud */
 
   /* data volumes */
-  ac_data_vol_size = local.ws["data_vol_size"]
-  do_data_vol_size = local.ws["data_vol_size"]
-  gc_data_vol_size = local.ws["data_vol_size"]
+  ac_data_vol_size = local.ws["node_data_vol_size"]
+  do_data_vol_size = local.ws["node_data_vol_size"]
+  gc_data_vol_size = local.ws["node_data_vol_size"]
 
   /* firewall */
   open_tcp_ports = [
