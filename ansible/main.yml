@@ -14,8 +14,6 @@
   roles:
     - { role: open-ports, tags: open-ports }
     - { role: swap-file,  tags: swap-file  }
-    # TODO: check with Waku team if still needed:
-    # - { role: conn-limit, tags: conn-limit }
     - { role: certbot,    tags: certbot    }
     - { role: nim-waku,   tags: nim-waku   }
 
