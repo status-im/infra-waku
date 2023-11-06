@@ -38,8 +38,8 @@ nim_waku_store_message_db_url: 'postgres://{{ nim_waku_store_message_db_user}}:{
 nim_waku_store_message_retention_policy: 'time:2592000' # 30 days
 
 # DNS Discovery
-nim_waku_dns_disc_enabled: false
-#nim_waku_dns_disc_url: TODO launch the fleet with DNS disc disabled, construct and publish the tree and then update config
+nim_waku_dns_disc_enabled: true
+nim_waku_dns_disc_url: 'enrtree://AOGYWMBYOUIMOENHXCHILPKY3ZRFEULMFI4DOM442QSZ73TT2A7VI@test.waku.nodes.status.im'
 
 # Enable WebSockets via Websockify
 nim_waku_websockify_enabled: false
