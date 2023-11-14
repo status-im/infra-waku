@@ -4,7 +4,7 @@
 nim_waku_cont_tag: 'deploy-{{ env }}-{{ stage }}'
 nim_waku_cont_name: 'nim-waku'
 nim_waku_log_level: 'debug'
-nim_waku_protocols_enabled: ['relay', 'store', 'filter', 'lightpush', 'peer-exchange']
+nim_waku_protocols_enabled: ['relay', 'rln-relay', 'store', 'filter', 'lightpush', 'peer-exchange']
 nim_waku_disc_v5_enabled: true
 nim_waku_dns4_domain_name: '{{ dns_entry }}'
 nim_waku_node_key: '{{lookup("bitwarden", "fleets/"+env+"/"+stage+"/nodekeys", field=hostname)}}'
@@ -46,7 +46,7 @@ nim_waku_dns_disc_url: 'enrtree://AOGYWMBYOUIMOENHXCHILPKY3ZRFEULMFI4DOM442QSZ73
 nim_waku_websockify_enabled: false
 
 # Enable websockets in Waku
-# Could run into the issue of overflowing ENR might have to disable this.
+# Could run into the issue of overflowing ENR, might have to disable this.
 nim_waku_websocket_enabled: true 
 nim_waku_websocket_secure_enabled: true
 nim_waku_websocket_domain: '{{ dns_entry }}'
