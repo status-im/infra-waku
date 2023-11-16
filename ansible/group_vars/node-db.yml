@@ -14,6 +14,8 @@ postgres_ha_databases:
     user: 'nim-waku'
     pass: '{{lookup("bitwarden", "fleets/waku/"+stage+"/db/nim-waku")}}'
 
+postgres_ha_backup: false
+
 # Open PostgreSQL Port
 open_ports_default_comment: '{{ postgres_ha_service_name }}'
 open_ports_default_chain: 'SERVICES'
