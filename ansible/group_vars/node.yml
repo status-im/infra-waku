@@ -36,7 +36,7 @@ nim_waku_store_message_db_name: 'nim-waku'
 nim_waku_store_message_db_user: 'nim-waku'
 nim_waku_store_message_db_pass: '{{lookup("bitwarden", "fleets/"+env+"/"+stage+"/db/nim-waku")}}'
 nim_waku_store_message_db_url: 'postgres://{{ nim_waku_store_message_db_user}}:{{ nim_waku_store_message_db_pass}}@node-db-01.{{ ansible_domain }}.wg:5432/{{nim_waku_store_message_db_name}}'
-nim_waku_store_message_retention_policy: 'time:604800' # 30 days
+nim_waku_store_message_retention_policy: 'time:432000' # 5 days
 
 # DNS Discovery
 nim_waku_dns_disc_enabled: true
