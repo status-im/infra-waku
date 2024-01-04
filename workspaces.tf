@@ -18,7 +18,7 @@ locals {
       gc_type = "g1-small"           /* Google Cloud */
 
       node_data_vol_size = 40
-      node_db_data_vol_size = 40
+      node_db_data_vol_size = 50
     }
 
     # Inherits defaults.
