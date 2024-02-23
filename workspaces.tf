@@ -25,6 +25,10 @@ locals {
     test = {
       /* Settings specific to the test fleet/workspace. */
     }
+
+    sandbox = {
+      /* Settings specific to the test fleet/workspace. */
+    }
   }
 }
 
