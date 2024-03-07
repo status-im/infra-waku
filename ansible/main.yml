@@ -16,6 +16,7 @@
     - { role: swap-file,  tags: swap-file  }
     - { role: certbot,    tags: certbot    }
     - { role: nim-waku,   tags: nim-waku   }
+    - { role: nginx,      tags: nginx      }
 
 - name: Configure Waku Storage DB Nodes
   hosts: node-db

@@ -3,6 +3,8 @@
 # Tag dependent on fleet: test
 nim_waku_cont_tag: 'deploy-{{ env }}-{{ stage }}'
 nim_waku_cont_name: 'nim-waku'
+nim_waku_cont_vol: '/docker/{{ nim_waku_cont_name }}'
+nim_waku_node_conf_path: '{{ nim_waku_cont_vol }}/conf'
 nim_waku_log_level: 'debug'
 nim_waku_protocols_enabled: ['relay', 'rln-relay', 'store', 'filter', 'lightpush', 'peer-exchange']
 nim_waku_disc_v5_enabled: true
@@ -44,12 +46,9 @@ nim_waku_store_vacuum: true
 nim_waku_dns_disc_enabled: true
 nim_waku_dns_disc_url: 'enrtree://AOGYWMBYOUIMOENHXCHILPKY3ZRFEULMFI4DOM442QSZ73TT2A7VI@test.waku.nodes.status.im'
 
-# Enable WebSockets via Websockify
-nim_waku_websockify_enabled: false
-
 # Enable websockets in Waku
 # Could run into the issue of overflowing ENR, might have to disable this.
-nim_waku_websocket_enabled: true 
+nim_waku_websocket_enabled: true
 nim_waku_websocket_secure_enabled: true
 nim_waku_websocket_domain: '{{ dns_entry }}'
 nim_waku_websocket_ssl_dir: '/etc/letsencrypt'
@@ -70,9 +69,10 @@ nim_waku_consul_failures_before_critical: 20
 # LetsEncrypt via Certbot
 certbot_docker_enabled: true
 certbot_admin_email: 'devops@status.im'
+certbot_services_to_stop: ['nginx']
 certbot_containers_to_stop: ['{{ nim_waku_cont_name }}']
 certbot_certs:
-  - domains: [ '{{ nim_waku_websockify_domain }}' ]
+  - domains: [ '{{ nim_waku_websocket_domain }}' ]
 
 # Connection limits
 conn_limit_comment: 'WebSocket conn limit'
@@ -84,8 +84,21 @@ open_ports_default_comment: '{{ nim_waku_cont_name }}'
 open_ports_default_chain: 'SERVICES'
 open_ports_default_protocol: 'tcp'
 open_ports_list:
+  - { port: '80', comment: 'Nginx and Certbot' }
   - { port: '{{ nim_waku_p2p_tcp_port }}' }
   - { port: '{{ nim_waku_disc_v5_port }}', protocol: 'udp' }
   - { port: '{{ nim_waku_websock_port }}' }
-  - { port: '80', comment: 'Certbot verification' }
   - { port: '{{ nim_waku_metrics_port }}', chain: 'VPN', ipset: 'metrics.hq' }
+
+# Public Config file access
+nginx_sites:
+  nim_waku_config:
+    - listen 80 default_server
+    - location = / {
+        return 302 /config.toml;
+      }
+    - location = /config.toml {
+        root {{ nim_waku_node_conf_path }};
+        try_files /config.toml =404;
+        types { text/plain toml; }
+      }
