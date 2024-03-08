@@ -25,7 +25,6 @@ module "node" {
   /* firewall */
   open_tcp_ports = [
     "80",    /* certbot */
-    "443",   /* p2p websockify */
     "8000",  /* p2p websocket */
     "30303", /* p2p main */
     /* only on node-01.gc-us-central1-a.wakuv2.prod */
