@@ -6,8 +6,6 @@ module "node-db" {
   group  = "node-db"
   env    = "waku"
   stage  = terraform.workspace
-  domain = var.domain
-  cf_zone_id = var.cf_zone_id
 
   /* scaling */
   host_count = local.ws["hosts_count"]

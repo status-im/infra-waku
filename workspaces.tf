@@ -24,14 +24,10 @@ locals {
     # Inherits defaults.
     test = {
       /* Settings specific to the test fleet/workspace. */
-      cf_zone_id = "14660d10344c9898521c4ba49789f563"
-      domain = "statusim.net"
     }
 
     sandbox = {
       /* Settings specific to the test fleet/workspace. */
-      cf_zone_id = "fd48f427e99bbe1b52105351260690d1"
-      domain = "status.im"
     }
   }
 }
