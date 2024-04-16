@@ -7,6 +7,14 @@ There are 2 kinds of nodes:
 * `node` - `nim-waku` nodes
 * `node-db` - PostgreSQL used by `node` nodes for envelope storage.
 
+# Discovery
+
+DNS `TXT` ENRTree records exist to discover available fleets:
+```
+enrtree://AOGYWMBYOUIMOENHXCHILPKY3ZRFEULMFI4DOM442QSZ73TT2A7VI@test.waku.nodes.status.im
+enrtree://AIRVQ5DDA4FFWLRBCHJWUWOO6X6S4ZTZ5B667LQ6AJU6PEYDLRD5O@sandbox.waku.nodes.status.im
+```
+
 # Continious Integration
 
 Jenkins CI builds can be used to build and deploy new Docker images:
