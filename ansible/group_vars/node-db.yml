@@ -8,12 +8,12 @@ postgres_ha_replica_enabled: false
 postgres_ha_replica_allowed_addresses: []
 
 postgres_ha_admin_user: 'postgres'
-postgres_ha_admin_pass: '{{lookup("bitwarden", "fleets/waku/"+stage+"/db/admin")}}'
+postgres_ha_admin_pass: '{{lookup("community.hashi_vault.hashi_vault", "secret/waku/fleets/waku/"+stage+"/db/admin:password")}}'
 
 postgres_ha_databases:
   - name: 'nim-waku'
     user: 'nim-waku'
-    pass: '{{lookup("bitwarden", "fleets/waku/"+stage+"/db/nim-waku")}}'
+    pass: '{{lookup("community.hashi_vault.hashi_vault", "secret/waku/fleets/waku/"+stage+"/db/nim-waku:password")}}'
 
 postgres_ha_backup: false
 
