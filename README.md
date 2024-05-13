@@ -2,9 +2,13 @@
 
 This repo defines infrastructure for running [nim-waku](github.com/status-im/nim-waku) nodes shards.
 
-There are 2 kinds of nodes:
+# Dashboard
 
-* `node` - `nim-waku` nodes
+You can look up current state of the fleet at: https://fleets.waku.org/
+
+# Layout
+
+* `node` - The `nim-waku` nodes running Waku V2 protocol.
 * `node-db` - PostgreSQL used by `node` nodes for envelope storage.
 
 # Discovery
