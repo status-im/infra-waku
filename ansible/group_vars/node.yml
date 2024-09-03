@@ -88,15 +88,14 @@ conn_limit_limit: 20
 conn_limit_dport: '{{ nim_waku_websock_port }}'
 
 # Open LibP2P Ports
-open_ports_default_comment: '{{ nim_waku_cont_name }}'
-open_ports_default_chain: 'SERVICES'
-open_ports_default_protocol: 'tcp'
 open_ports_list:
-  - { port: '80', comment: 'Nginx and Certbot' }
-  - { port: '{{ nim_waku_p2p_tcp_port }}' }
-  - { port: '{{ nim_waku_disc_v5_port }}', protocol: 'udp' }
-  - { port: '{{ nim_waku_websock_port }}' }
-  - { port: '{{ nim_waku_metrics_port }}', chain: 'VPN', ipset: 'metrics.hq' }
+  nginx:
+    - { port: '80', comment: 'Nginx and Certbot' }
+  nim-waku:  
+    - { port: '{{ nim_waku_p2p_tcp_port }}', comment: 'libp2p' }
+    - { port: '{{ nim_waku_disc_v5_port }}', comment: 'discovery v5', protocol: 'udp' }
+    - { port: '{{ nim_waku_websock_port }}', comment: 'websocket' }
+    - { port: '{{ nim_waku_metrics_port }}', comment: 'metrics', ipset: 'metrics.hq', iifname: 'wg0' }
 
 # Public Config file access
 nginx_sites:
