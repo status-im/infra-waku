@@ -9,7 +9,7 @@ nim_waku_log_level: 'debug'
 nim_waku_protocols_enabled: ['relay', 'rln-relay', 'store', 'filter', 'lightpush', 'peer-exchange']
 nim_waku_disc_v5_enabled: true
 nim_waku_dns4_domain_name: '{{ dns_entry }}'
-nim_waku_node_key: '{{lookup("bitwarden", "fleets/"+env+"/"+stage+"/nodekeys", field=hostname)}}'
+nim_waku_node_key: '{{lookup("vault", "waku/"+env+"-"+stage+"/config", field=hostname)}}'
 nim_waku_cluster_id: 1
 nim_waku_relay_shard_manager: true
 
@@ -39,7 +39,7 @@ nim_waku_max_relay_peers: '{{ nim_waku_p2p_max_connections - 100 }}'
 # Store
 nim_waku_store_message_db_name: 'nim-waku'
 nim_waku_store_message_db_user: 'nim-waku'
-nim_waku_store_message_db_pass: '{{lookup("bitwarden", "fleets/"+env+"/"+stage+"/db/nim-waku")}}'
+nim_waku_store_message_db_pass: '{{lookup("vault", "waku/"+env+"-"+stage+"/config", field="db-password")}}'
 nim_waku_store_message_db_url: 'postgres://{{ nim_waku_store_message_db_user}}:{{ nim_waku_store_message_db_pass}}@node-db-01.{{ ansible_domain }}.wg:5432/{{nim_waku_store_message_db_name}}'
 nim_waku_store_message_retention_policy: 'size:50GB'
 nim_waku_store_vacuum: true
@@ -66,8 +66,8 @@ nim_waku_rln_relay_eth_contract_address: '0xCB33Aa5B38d79E3D9Fa8B10afF38AA201399
 nim_waku_rln_relay_eth_client_address: 'http://linux-01.ih-eu-mda1.nimbus.sepolia.wg:8556'
 nim_waku_rln_relay_tree_path: '/data/rln_relay_tree'
 nim_waku_rln_keystore_active: true 
-nim_waku_rln_cred_password: '{{ lookup("bitwarden", "fleets/" + env + "/" + stage + "/waku-rln",  field="keystore-password")}}'
-nim_waku_rln_account_key: '{{ lookup("bitwarden", "fleets/" + env + "/" + stage + "/waku-rln",  field="account-private-key")}}'
+nim_waku_rln_cred_password: '{{ lookup("vault", "waku/" + env + "-" + stage + "/config",  field="keystore-password")}}'
+nim_waku_rln_account_key: '{{ lookup("vault", "waku/" + env + "-" + stage + "/config",  field="account-private-key")}}'
 
 # Consul Service
 nim_waku_consul_success_before_passing: 5
