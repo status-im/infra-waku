@@ -33,6 +33,8 @@ nim_waku_rpc_tcp_port: 8545
 
 # Limits
 nim_waku_p2p_max_connections: 300
+# Lower limit than max conns to allow space for other protocol and Waku canary.
+nim_waku_max_relay_peers: '{{ nim_waku_p2p_max_connections - 100 }}'
 
 # Store
 nim_waku_store_message_db_name: 'nim-waku'
