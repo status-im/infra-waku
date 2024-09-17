@@ -22,3 +22,7 @@ open_ports_default_comment: '{{ postgres_ha_service_name }}'
 open_ports_list:
    postgres: 
     - { port: '{{ postgres_ha_cont_port }}', ipset: '{{ env }}.{{ stage }}', iifname: 'wg0' }
+
+# Use the 30% of RAM for shared memory
+postgres_share_memory: '{{ ansible_memtotal_mb * 0.30 | int }}m'
+
