@@ -4,7 +4,7 @@ bootstrap__root_pass:               '{{lookup("vault", "hosts/config",          
 bootstrap__firewall_nftables: true
   # Consul
 bootstrap__consul_encryption_key:   '{{lookup("vault", "hosts/config",                field="consul-encryption-key")}}'
-bootstarp__consul_agent_acl_token:  '{{lookup("vault", "hosts/config",                field="agent-acl-token")}}'
+bootstarp__consul_agent_acl_token:  '{{lookup("vault", "hosts/consul-acl-tokens",     field="agent-default")}}'
 bootstrap__consul_certs_ca_crt:     '{{lookup("vault", "hosts/consul/certs",          field="ca.pem")}}'
 bootstrap__consul_certs_client_crt: '{{lookup("vault", "hosts/consul/certs",          field="client.pem")}}'
 bootstrap__consul_certs_client_key: '{{lookup("vault", "hosts/consul/certs",          field="client-key.pem")}}'
