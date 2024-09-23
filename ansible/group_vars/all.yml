@@ -4,14 +4,14 @@ bootstrap__root_pass:               '{{lookup("vault", "hosts/config",          
 bootstrap__firewall_nftables: true
   # Consul
 bootstrap__consul_encryption_key:   '{{lookup("vault", "hosts/config",                field="consul-encryption-key")}}'
-bootstarp__consul_agent_acl_token:  '{{lookup("vault", "hosts/consul-acl-tokens",     field="agent-default")}}'
+bootstarp__consul_agent_acl_token:  '{{lookup("vault", "hosts/consul/acl-tokens",     field="agent-default")}}'
 bootstrap__consul_certs_ca_crt:     '{{lookup("vault", "hosts/consul/certs",          field="ca.pem")}}'
 bootstrap__consul_certs_client_crt: '{{lookup("vault", "hosts/consul/certs",          field="client.pem")}}'
 bootstrap__consul_certs_client_key: '{{lookup("vault", "hosts/consul/certs",          field="client-key.pem")}}'
 # SSHGuard
 bootstrap__sshguard_whitelist_extra: ['{{lookup("vault", "hosts/sshguard/whitelist",  field="jakubgs-home")}}']
 # Wireguard
-wireguard_consul_acl_token:         '{{lookup("vault", "hosts/config",                field="wireguard-acl-token")}}'
+wireguard_consul_acl_token:         '{{lookup("vault", "hosts/consul/acl-tokens",     field="wireguard")}}'
 
 # Volume of Trace level logs is too high and fills up ES cluster.
 bootstrap__rsyslog_filter_rules: ['TRC']
