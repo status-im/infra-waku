@@ -24,9 +24,7 @@ module "node" {
   open_tcp_ports = [
     "80",    /* certbot */
     "8000",  /* p2p websocket */
-    "30303", /* p2p main */
-    /* only on node-01.gc-us-central1-a.wakuv2.prod */
-    "9000",  /* chat2bridge */
+    "30303", /* libp2p main */
   ]
   open_udp_ports = [
     "9000",  /* discovery v5 */
