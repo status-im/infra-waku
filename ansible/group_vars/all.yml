@@ -1,17 +1,19 @@
 ---
 # Root password
-bootstrap__root_pass:               '{{lookup("vault", "hosts/config",                field="root-pass")}}'
-bootstrap__firewall_nftables: true
-  # Consul
-bootstrap__consul_encryption_key:   '{{lookup("vault", "hosts/config",                field="consul-encryption-key")}}'
-bootstarp__consul_agent_acl_token:  '{{lookup("vault", "hosts/consul/acl-tokens",     field="agent-default")}}'
-bootstrap__consul_certs_ca_crt:     '{{lookup("vault", "hosts/consul/certs",          field="ca.pem")}}'
-bootstrap__consul_certs_client_crt: '{{lookup("vault", "hosts/consul/certs",          field="client.pem")}}'
-bootstrap__consul_certs_client_key: '{{lookup("vault", "hosts/consul/certs",          field="client-key.pem")}}'
+bootstrap__root_pass:               '{{lookup("vault", "hosts",            field="root-pass",       stage="all", env="all")}}'
+# Consul
+bootstrap__consul_encryption_key:   '{{lookup("vault", "consul/config",     field="encryption-key", stage="all", env="all")}}'
+bootstarp__consul_agent_acl_token:  '{{lookup("vault", "consul/acl-tokens", field="agent-default",  stage="all", env="all")}}'
+bootstrap__consul_certs_ca_crt:     '{{lookup("vault", "consul/certs",      field="ca.pem",         stage="all", env="all")}}'
+bootstrap__consul_certs_client_crt: '{{lookup("vault", "consul/certs",      field="client.pem",     stage="all", env="all")}}'
+bootstrap__consul_certs_client_key: '{{lookup("vault", "consul/certs",      field="client-key.pem", stage="all", env="all")}}'
 # SSHGuard
-bootstrap__sshguard_whitelist_extra: ['{{lookup("vault", "hosts/sshguard/whitelist",  field="jakubgs-home")}}']
+bootstrap__sshguard_whitelist_extra: ['{{lookup("vault", "sshguard/whitelist", field="jakubgs-home", stage="all", env="all")}}']
 # Wireguard
-wireguard_consul_acl_token:         '{{lookup("vault", "hosts/consul/acl-tokens",     field="wireguard")}}'
+wireguard_consul_acl_token:          '{{lookup("vault", "consul/acl-tokens", field="wireguard", stage="all", env="all")}}'
+
+# Firewall
+bootstrap__firewall_nftables: true
 
 # Volume of Trace level logs is too high and fills up ES cluster.
 bootstrap__rsyslog_filter_rules: ['TRC']
@@ -20,7 +22,7 @@ bootstrap__rsyslog_filter_rules: ['TRC']
 bootstrap__docker_registries:
   - url:      'https://harbor.status.im'
     username: 'robot$wakuorg+infra-waku'
-    password: '{{ lookup("vault", "hosts/config/harbor-robot", field="robot$wakuorg+infra-waku") }}'
+    password: '{{ lookup("vault", "robot", field="robot$wakuorg+infra-waku", env="ci", stage="harbor")}}'
 
 # Custom SSH accounts for Nimbus fleet, should start from UID 8000.
 bootstrap__active_extra_users:

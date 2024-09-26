@@ -8,12 +8,12 @@ postgres_ha_replica_enabled: false
 postgres_ha_replica_allowed_addresses: []
 
 postgres_ha_admin_user: 'postgres'
-postgres_ha_admin_pass: '{{lookup("vault", "waku/" + env + "-" + stage+"/config", field="db-admin-password")}}'
+postgres_ha_admin_pass: '{{lookup("vault", "database", field="db-admin-password")}}'
 
 postgres_ha_databases:
   - name: 'nim-waku'
     user: 'nim-waku'
-    pass: '{{lookup("vault", "waku/"+ env + "-" +stage+"/config", field="db-password")}}'
+    pass: '{{lookup("vault", "database", field="db-password")}}'
 
 postgres_ha_backup: false
 
