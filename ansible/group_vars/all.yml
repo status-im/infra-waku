@@ -12,9 +12,6 @@ bootstrap__sshguard_whitelist_extra: ['{{lookup("vault", "sshguard/whitelist", f
 # Wireguard
 wireguard_consul_acl_token:          '{{lookup("vault", "consul/acl-tokens", field="wireguard", stage="all", env="all")}}'
 
-# Firewall
-bootstrap__firewall_nftables: true
-
 # Volume of Trace level logs is too high and fills up ES cluster.
 bootstrap__rsyslog_filter_rules: ['TRC']
 
