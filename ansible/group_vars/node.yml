@@ -97,7 +97,7 @@ open_ports_list:
     - { port: '{{ nim_waku_p2p_tcp_port }}', comment: 'libp2p' }
     - { port: '{{ nim_waku_disc_v5_port }}', comment: 'discovery v5', protocol: 'udp' }
     - { port: '{{ nim_waku_websock_port }}', comment: 'websocket' }
-    - { port: '{{ nim_waku_metrics_port }}', comment: 'metrics', ipset: 'metrics.hq', iifname: 'wg0' }
+    - { port: '{{ nim_waku_metrics_port }}', comment: 'metrics', ipset: 'hq.metrics', iifname: 'wg0' }
 
 # Public Config file access
 nginx_sites:
