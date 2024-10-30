@@ -27,5 +27,4 @@ open_ports_list:
     - { port: '{{ postgres_ha_metrics_exporter_cont_port }}', ipset: 'hq.metrics',            iifname: 'wg0' }
 
 # Use the 30% of RAM for shared memory
-postgres_share_memory: '{{ ansible_memtotal_mb * 0.30 | int }}m'
-
+postgres_ha_share_memory: '{{ (ansible_memtotal_mb * 0.3) | int }}m'
