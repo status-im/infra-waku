@@ -27,3 +27,8 @@ bootstrap__active_extra_users:
   - { name: ivan,   uid: 8004, admin: true, key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBdm8y1PfWjT1pioaWJSZ2ETrUySb+dS/ifDg+VIpLY ivansete@status.im' }
   - { name: zoltan, uid: 8005, admin: true, key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFNYe8dLIGTTrTYgKfaXhai6uQmJfewJPi3MXwIeM2Zk zoltan@status.im' }
   - { name: gabriel,uid: 8006, admin: true, key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2/Z8eRjB+uYwC8OTYwMI5HYaZvpD68fKLvo2f6/2abzs5MTskXVlDFB7XDsFw+s1oloKKKNl+VYA7WR4qO8c0usMHll2Io1XuRdMJQsUaERpxKOeddIpsOaAmHea7Dh/JVdC07aQm0QDYnfSXD66k//LD2EfjSp/9L6ObPbtWSYnMtlIxmNq8hdP33R59HAcpZtXnubElQhxAMtY4pnBNI/jJS44uan2asNT4vftUMUAmSGjwTVgbRHiE1nyvwcisvy8kDQILXxchetRcWZw/aztmvWUYOTebgdvlMirZRLw6gLjjKMoGgRIpI/vDHZyYezEdzjOLf//4qcD4ez5H gabriel@status.im' }
+
+# Wazuh Agent
+wazuh_agent_enrollment_key: '{{ lookup("vault", "manager/config", field="enrollment-password", env="hq", stage="wazuh")}}'
+wazuh_root_ca:              '{{ lookup("vault", "root-ca",        field="certificate",         env="hq", stage="wazuh")}}'
+
