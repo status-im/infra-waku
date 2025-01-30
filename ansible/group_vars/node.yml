@@ -14,15 +14,15 @@ nim_waku_cluster_id: 1
 nim_waku_relay_shard_manager: true
 
 # Subscribe to all shards
-nim_waku_pubsub_topics:
-  - '/waku/2/rs/1/0'
-  - '/waku/2/rs/1/1'
-  - '/waku/2/rs/1/2'
-  - '/waku/2/rs/1/3'
-  - '/waku/2/rs/1/4'
-  - '/waku/2/rs/1/5'
-  - '/waku/2/rs/1/6'
-  - '/waku/2/rs/1/7'
+nim_waku_shards:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
 
 # Ports
 nim_waku_p2p_tcp_port: 30303
