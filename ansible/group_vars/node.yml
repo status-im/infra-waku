@@ -63,7 +63,7 @@ nim_waku_websocket_ssl_key: '/etc/letsencrypt/live/{{ nim_waku_websocket_domain 
 # Waku rln-relay parameters
 nim_waku_rln_relay_dynamic: true
 nim_waku_rln_relay_eth_contract_address: '0xCB33Aa5B38d79E3D9Fa8B10afF38AA201399a7e3'
-nim_waku_rln_relay_eth_client_address: 'http://linux-01.ih-eu-mda1.nimbus.sepolia.wg:8556'
+nim_waku_rln_relay_eth_client_address: 'http://linux-01.ih-eu-mda1.nimbus.sepolia.wg:8546'
 nim_waku_rln_relay_tree_path: '/data/rln_relay_tree'
 nim_waku_rln_keystore_active: true
 nim_waku_rln_cred_password:   '{{ lookup("vault", "config", field="keystore-password")}}'
@@ -93,7 +93,7 @@ conn_limit_dport: '{{ nim_waku_websock_port }}'
 open_ports_list:
   nginx:
     - { port: '80', comment: 'Nginx and Certbot' }
-  nim-waku:  
+  nim-waku:
     - { port: '{{ nim_waku_p2p_tcp_port }}', comment: 'libp2p' }
     - { port: '{{ nim_waku_disc_v5_port }}', comment: 'discovery v5', protocol: 'udp' }
     - { port: '{{ nim_waku_websock_port }}', comment: 'websocket' }
