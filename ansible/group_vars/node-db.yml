@@ -18,6 +18,8 @@ postgres_ha_databases:
 postgres_ha_backup: false
 
 postgres_ha_metrics_exporter_cont_port: 9187
+postgres_ha_alter_system_settings:
+  max_locks_per_transaction: '2160'
 
 # Open PostgreSQL Port
 open_ports_default_comment: '{{ postgres_ha_service_name }}'
