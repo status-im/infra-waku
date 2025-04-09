@@ -11,11 +11,25 @@ locals {
     defaults = {
       /* Default settings for all fleets/workspaces. */
 
-      hosts_count = 1 /* number of hosts in each DC */
+      /* Number of node hosts in each data center. */
+      ac_node_count = 1
+      do_node_count = 1
+      gc_node_count = 1
 
-      do_type = "s-1vcpu-2gb"        /* DigitalOcean */
-      ac_type = "ecs.t5-lc1m2.small" /* Alibaba Cloud */
-      gc_type = "g1-small"           /* Google Cloud */
+      /* Node host size in each data center */
+      do_node_type = "s-1vcpu-2gb"
+      ac_node_type = "ecs.t5-lc1m2.small"
+      gc_node_type = "g1-small"
+
+      /* Number of DB hosts in each data center. */
+      ac_db_count = 1
+      do_db_count = 1
+      gc_db_count = 1
+
+      /* DB host size in each data center */
+      do_db_type = "s-1vcpu-2gb"
+      ac_db_type = "ecs.t5-lc1m2.small"
+      gc_db_type = "g1-small"
 
       node_data_vol_size = 40
       node_db_data_vol_size = 70

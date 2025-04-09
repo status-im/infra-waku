@@ -8,12 +8,14 @@ module "node-db" {
   stage  = terraform.workspace
 
   /* scaling */
-  host_count = local.ws["hosts_count"]
+  ac_count = local.ws["ac_db_count"]
+  do_count = local.ws["do_db_count"]
+  gc_count = local.ws["gc_db_count"]
 
   /* instance sizes */
-  do_type = local.ws["do_type"] /* DigitalOcean */
-  ac_type = local.ws["ac_type"] /* Alibaba Cloud */
-  gc_type = local.ws["gc_type"] /* Google Cloud */
+  do_type = local.ws["do_db_type"] /* DigitalOcean */
+  ac_type = local.ws["ac_db_type"] /* Alibaba Cloud */
+  gc_type = local.ws["gc_db_type"] /* Google Cloud */
 
   /* data volumes */
   ac_data_vol_size = local.ws["node_db_data_vol_size"]
