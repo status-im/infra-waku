@@ -43,23 +43,6 @@ locals {
     sandbox = {
       /* Settings specific to the test fleet/workspace. */
     }
-
-    /* Temporary fleet for testing performance against prod DB. */
-    dbperf = {
-      ac_node_count = 0
-      gc_node_count = 0
-      do_node_count = 1
-
-      ac_db_count = 0
-      gc_db_count = 0
-      do_db_count = 1
-
-      do_node_type = "s-4vcpu-8gb"
-
-      do_db_type = "c2-16vcpu-32gb-intel"
-
-      node_db_data_vol_size = 320
-    }
   }
 }
 
