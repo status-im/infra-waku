@@ -62,12 +62,19 @@ nim_waku_websocket_ssl_key: '/etc/letsencrypt/live/{{ nim_waku_websocket_domain 
 
 # Waku rln-relay parameters
 nim_waku_rln_relay_dynamic: true
-nim_waku_rln_relay_eth_contract_address: '0xfe7a9eabce779a090fd702346fd0bfac02ce6ac8'
-nim_waku_rln_relay_eth_client_address: ['http://linux-01.ih-eu-mda1.nimbus.sepolia.wg:8546']
 nim_waku_rln_relay_tree_path: '/data/rln_relay_tree'
 nim_waku_rln_keystore_active: true
 nim_waku_rln_cred_password:   '{{ lookup("vault", "config", field="keystore-password")}}'
 nim_waku_rln_account_key:     '{{ lookup("vault", "config", field="account-private-key")}}'
+nim_waku_rln_relay_eth_contract_address: '{{ nim_waku_rln_relay_eth_contract_address_map[stage] }}'
+nim_waku_rln_relay_eth_contract_address_map:
+  test:    '0xB9cd878C90E49F797B4431fBF4fb333108CB90e6'
+  sandbox: '0xfe7a9eabce779a090fd702346fd0bfac02ce6ac8'
+nim_waku_rln_relay_eth_client_address: ['{{ nim_waku_rln_relay_eth_client_address_map[stage] }}']
+nim_waku_rln_relay_eth_client_address_map:
+  # FIXME: Use our own proxy to leverage caching and limit usage.
+  test:    'https://linea-sepolia.infura.io/v3/{{ lookup("vault", "config", field="infura-token")}}'
+  sandbox: 'http://linux-01.ih-eu-mda1.nimbus.sepolia.wg:8546'
 
 # Consul Service
 nim_waku_consul_success_before_passing: 5
