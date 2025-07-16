@@ -68,6 +68,7 @@ nim_waku_rln_cred_password:   '{{ lookup("vault", "config", field="keystore-pass
 nim_waku_rln_account_key:     '{{ lookup("vault", "config", field="account-private-key")}}'
 nim_waku_rln_relay_eth_contract_address: '0xB9cd878C90E49F797B4431fBF4fb333108CB90e6'
 nim_waku_rln_relay_eth_client_address: ['https://linea-sepolia.infura.io/v3/{{ lookup("vault", "config", field="infura-token")}}']
+nim_waku_keep_alive: '{{ true if stage == "sandbox" else false }}'
 
 # Consul Service
 nim_waku_consul_success_before_passing: 5
