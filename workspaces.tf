@@ -42,6 +42,7 @@ locals {
 
     sandbox = {
       /* Settings specific to the test fleet/workspace. */
+      node_db_data_vol_size = 100
     }
   }
 }
