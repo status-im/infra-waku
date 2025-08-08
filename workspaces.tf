@@ -43,6 +43,10 @@ locals {
     sandbox = {
       /* Settings specific to the test fleet/workspace. */
       node_db_data_vol_size = 100
+
+      do_db_type = "s-2vcpu-4gb"
+      ac_db_type = "ecs.t5-lc1m2.large"
+      gc_db_type = "e2-medium"
     }
   }
 }
