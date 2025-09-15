@@ -44,9 +44,9 @@ locals {
       /* Settings specific to the test fleet/workspace. */
       node_db_data_vol_size = 100
 
-      do_db_type = "s-2vcpu-4gb"
-      ac_db_type = "ecs.t5-lc1m2.large"
-      gc_db_type = "e2-medium"
+      do_db_type = "s-4vcpu-8gb"
+      ac_db_type = "ecs.t5-lc1m4.large"
+      gc_db_type = "e2-standard-2"
     }
   }
 }
