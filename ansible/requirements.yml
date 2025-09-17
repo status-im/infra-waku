@@ -30,4 +30,4 @@
 
 - name: infra-role-wazuh-agent
   src: git@github.com:status-im/infra-role-wazuh-agent.git
-  version: 8fecb15dc8b7461af57d6e76bcbb136fcd5a932a
+  version: d6d4c1dd104371671b2d077e221670760c2efc68
