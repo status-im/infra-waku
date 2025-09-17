@@ -43,6 +43,17 @@ nim_waku_store_message_db_pass: '{{lookup("vault", "database", field="db-passwor
 nim_waku_store_message_db_url: 'postgres://{{ nim_waku_store_message_db_user}}:{{ nim_waku_store_message_db_pass}}@node-db-01.{{ ansible_domain }}.wg:5432/{{nim_waku_store_message_db_name}}'
 nim_waku_store_message_retention_policy: 'size:50GB'
 nim_waku_store_vacuum: true
+# Store Sync
+nim_waku_store_sync_node_addr: '{{ nim_waku_store_sync_node_addr_map[inventory_hostname] }}'
+nim_waku_store_sync_node_addr_map:
+  # Sandbox
+  node-01.ac-cn-hongkong-c.waku.sandbox: '/dns4/node-01.gc-us-central1-a.waku.sandbox.status.im/tcp/30303/p2p/16Uiu2HAmRv1iQ3NoMMcjbtRmKxPuYBbF9nLYz2SDv9MTN8WhGuUU'
+  node-01.do-ams3.waku.sandbox:          '/dns4/node-01.ac-cn-hongkong-c.waku.sandbox.status.im/tcp/30303/p2p/16Uiu2HAmQYiojgZ8APsh9wqbWNyCstVhnp9gbeNrxSEQnLJchC92'
+  node-01.gc-us-central1-a.waku.sandbox: '/dns4/node-01.do-ams3.waku.sandbox.status.im/tcp/30303/p2p/16Uiu2HAmNaeL4p3WEYzC9mgXBmBWSgWjPHRvatZTXnp8Jgv3iKsb'
+  # Test
+  node-01.ac-cn-hongkong-c.waku.test:    '/dns4/node-01.gc-us-central1-a.waku.test.status.im/tcp/30303/p2p/16Uiu2HAmDCp8XJ9z1ev18zuv8NHekAsjNyezAvmMfFEJkiharitG'
+  node-01.do-ams3.waku.test:             '/dns4/node-01.ac-cn-hongkong-c.waku.test.status.im/tcp/30303/p2p/16Uiu2HAkzHaTP5JsUwfR9NR8Rj9HC24puS6ocaU8wze4QrXr9iXp'
+  node-01.gc-us-central1-a.waku.test:    '/dns4/node-01.do-ams3.waku.test.status.im/tcp/30303/p2p/16Uiu2HAkykgaECHswi3YKJ5dMLbq2kPVCo89fcyTd38UcQD6ej5W'
 
 # DNS Discovery
 nim_waku_dns_disc_enabled: true
