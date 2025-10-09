@@ -5,6 +5,10 @@ This repo defines infrastructure for running [nim-waku](github.com/status-im/nim
 # Dashboard
 
 You can look up current state of the fleet at: https://fleets.waku.org/
+You can check fleet status via Canary service:
+
+- https://canary.infra.status.im/status/waku-test
+- https://canary.infra.status.im/status/waku-sandbox
 
 # Layout
 
