@@ -19,6 +19,7 @@ postgres_ha_backup: false
 
 postgres_ha_perf_metrics_exporter_enabled: '{{ stage == "sandbox" }}'
 postgres_ha_metrics_exporter_cont_port: 9187
+postgres_ha_perf_metrics_exporter_cont_port: 9188
 postgres_ha_alter_system_settings:
   max_locks_per_transaction: '2160'
 
@@ -26,8 +27,9 @@ postgres_ha_alter_system_settings:
 open_ports_default_comment: '{{ postgres_ha_service_name }}'
 open_ports_list:
    postgres:
-    - { port: '{{ postgres_ha_cont_port }}',                  ipset: '{{ env }}.{{ stage }}', iifname: 'wg0' }
-    - { port: '{{ postgres_ha_metrics_exporter_cont_port }}', ipset: 'hq.metrics',            iifname: 'wg0' }
+    - { port: '{{ postgres_ha_cont_port }}',                       ipset: '{{ env }}.{{ stage }}', iifname: 'wg0' }
+    - { port: '{{ postgres_ha_metrics_exporter_cont_port }}',      ipset: 'hq.metrics',            iifname: 'wg0' }
+    - { port: '{{ postgres_ha_perf_metrics_exporter_cont_port }}', ipset: 'hq.metrics',            iifname: 'wg0' }
 
 # Use the 30% of RAM for shared memory
 postgres_ha_share_memory: '{{ (ansible_memtotal_mb * 0.3) | int }}m'
