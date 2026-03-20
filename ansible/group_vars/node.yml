@@ -42,7 +42,7 @@ nim_waku_store_message_db_name: 'nim-waku'
 nim_waku_store_message_db_user: 'nim-waku'
 nim_waku_store_message_db_pass: '{{lookup("vault", "database", field="db-password")}}'
 nim_waku_store_message_db_url: 'postgres://{{ nim_waku_store_message_db_user}}:{{ nim_waku_store_message_db_pass}}@node-db-01.{{ ansible_domain }}.wg:5432/{{nim_waku_store_message_db_name}}'
-nim_waku_store_message_retention_policy: 'size:50GB'
+nim_waku_store_message_retention_policy: 'size:50GB;time:2764800'
 nim_waku_store_vacuum: true
 # Store Sync
 nim_waku_store_sync_node_addr: '{{ nim_waku_store_sync_node_addr_map[inventory_hostname] }}'
