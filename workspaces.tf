@@ -18,7 +18,7 @@ locals {
 
       /* Node host size in each data center */
       do_node_type = "s-1vcpu-2gb"
-      ac_node_type = "ecs.t5-lc1m2.small"
+      ac_node_type = "ecs.c5.large"
       gc_node_type = "g1-small"
 
       /* Number of DB hosts in each data center. */
@@ -28,7 +28,7 @@ locals {
 
       /* DB host size in each data center */
       do_db_type = "s-1vcpu-2gb"
-      ac_db_type = "ecs.t5-lc1m2.small"
+      ac_db_type = "ecs.c5.large"
       gc_db_type = "g1-small"
 
       node_data_vol_size = 40
