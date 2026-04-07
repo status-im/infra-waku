@@ -39,7 +39,7 @@ locals {
     test = {
       /* Settings specific to the test fleet/workspace. */
       do_db_type = "s-2vcpu-4gb"
-      ac_db_type = "ecs.t5-lc1m2.large"
+      ac_db_type = "ecs.c5.large"
       gc_db_type = "t2d-standard-1"
     }
 
