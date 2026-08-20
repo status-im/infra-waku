@@ -21,4 +21,9 @@ module "node-db" {
   ac_data_vol_size = local.ws["node_db_data_vol_size"]
   do_data_vol_size = local.ws["node_db_data_vol_size"]
   gc_data_vol_size = local.ws["node_db_data_vol_size"]
+
+  /* billing */
+  ac_elastic_ip = true
+  /* FIXME: Remove after manual change takes effect. */
+  ac_internet_charge_type = "PayByBandwidth"
 }
