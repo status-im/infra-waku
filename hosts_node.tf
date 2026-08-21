@@ -24,8 +24,6 @@ module "node" {
 
   /* billing */
   ac_elastic_ip = true
-  /* FIXME: Remove after manual change takes effect. */
-  ac_internet_charge_type = "PayByBandwidth"
 
   /* firewall */
   open_tcp_ports = [
