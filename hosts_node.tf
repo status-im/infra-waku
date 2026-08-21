@@ -22,8 +22,8 @@ module "node" {
   do_data_vol_size = local.ws["node_data_vol_size"]
   gc_data_vol_size = local.ws["node_data_vol_size"]
 
-  /* billing */
-  ac_elastic_ip = true
+  /* network */
+  ac_elastic_ip = terraform.workspace == "sandbox"
 
   /* firewall */
   open_tcp_ports = [
