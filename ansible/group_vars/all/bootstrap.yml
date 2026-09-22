@@ -12,30 +12,15 @@ bootstrap__consul_encryption_key:             '{{lookup("vault", "consul/config"
 bootstrap__consul_certs_ca_crt:               '{{lookup("vault", "consul/certs",                 field="ca.pem",               env="all", stage="all")}}'
 bootstrap__consul_certs_client_crt:           '{{lookup("vault", "consul/certs",                 field="client.pem",           env="all", stage="all")}}'
 bootstrap__consul_certs_client_key:           '{{lookup("vault", "consul/certs",                 field="client-key.pem",       env="all", stage="all")}}'
+# SSHGuard
+bootstrap__sshguard_whitelist_extra:          ['{{lookup("vault", "sshguard/whitelist",          field="jakubgs-home",         env="all", stage="all")}}']
 # Vault
 bootstrap__vault_ca_cert:                     '{{ lookup("community.general.passwordstore", "services/vault/certs/ca-chain",            returnall=true)}}'
 bootstrap__vault_client_cert:                 '{{ lookup("community.general.passwordstore", "services/vault/certs/client-host/cert",    returnall=true)}}'
 bootstrap__vault_client_key:                  '{{ lookup("community.general.passwordstore", "services/vault/certs/client-host/privkey", returnall=true)}}'
-# SSHGuard
-bootstrap__sshguard_whitelist_extra:          ['{{lookup("vault", "sshguard/whitelist",    field="jakubgs-home", env="all", stage="all")}}']
 
 # Wireguard
-wireguard_consul_acl_token:                   '{{lookup("vault", "consul/acl-tokens", field="wireguard",          env="all", stage="all")}}'
+wireguard_consul_acl_token:                   '{{lookup("vault", "consul/acl-tokens/global", field="wireguard",          env="all", stage="all")}}'
 # Wazuh Agent
 wazuh_agent_enrollment_key:                   '{{ lookup("vault", "manager/config", field="enrollment-password",  env="hq",  stage="wazuh")}}'
 wazuh_root_ca:                                '{{ lookup("vault", "root-ca",        field="certificate",          env="hq",  stage="wazuh")}}'
-
-# Volume of Trace level logs is too high and fills up ES cluster.
-bootstrap__rsyslog_filter_rules: ['TRC']
-
-# Docker registry
-bootstrap__docker_registries:
-  - url:      'https://harbor.status.im'
-    username: 'robot$wakuorg+infra-waku'
-    password: '{{ lookup("vault", "robot", field="robot$wakuorg+infra-waku", env="ci", stage="harbor")}}'
-
-# Custom SSH accounts for Nimbus fleet, should start from UID 8000.
-bootstrap__active_extra_users:
-  - { name: ivan,    uid: 8004, admin: '{{ stage == "test" }}', key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBdm8y1PfWjT1pioaWJSZ2ETrUySb+dS/ifDg+VIpLY ivansete@status.im', pass: '$y$j9T$6d3ZQNLzh7Yb/787cDugT1$NxgTUW46/uCGyT/h3mOayfhYAxdb77Or./RV0o4d6h8' }
-  - { name: zoltan,  uid: 8005, admin: '{{ stage == "test"}}', key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFNYe8dLIGTTrTYgKfaXhai6uQmJfewJPi3MXwIeM2Zk zoltan@status.im',   pass: '$y$j9T$mDPUq.x9/dZqypIV9.VZa/$w/MxJ/Qlsq9kZwjJCdA/9dhN0go/58rmD1cM07IQsc2' }
-  - { name: fabiana, uid: 8006, admin: '{{ stage == "test" }}', key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzQ3/t6ZKOjkBsph7672fziIIYFmzO2yOMoOP7BO5d3 fabiana@waku.org',   pass: '$y$j9T$cFmwJBqZGJWR4qDVueTIp.$cIP2m3WtfxDqkfNG72LexFHQ4Yg4qTiKx5n03TD92yC' }
